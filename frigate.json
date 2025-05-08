@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 1940157526904832,
   "links": [],
   "panels": [
     {
@@ -259,6 +260,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "New dashboard",
-  "version": 0
+  "title": "Frigate",
+  "uid": "a58b063d-a1a4-42b5-b87d-175675b3cd74",
+  "version": 1
 }
