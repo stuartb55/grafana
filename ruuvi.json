@@ -18,7 +18,9 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 1594162090868736,
   "links": [],
+  "liveNow": true,
   "panels": [
     {
       "datasource": {
@@ -230,5 +232,6 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Ruuvi",
-  "version": 0
+  "uid": "351ce7b6-5d26-495c-8c0a-cd018a7083e6",
+  "version": 1
 }
