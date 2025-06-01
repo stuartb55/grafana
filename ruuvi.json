@@ -120,6 +120,15 @@
         }
       ],
       "title": "Temperature",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": ".*topic=\"([^\"]+)\".*",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -216,6 +225,15 @@
         }
       ],
       "title": "Humidity",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": ".*topic=\"([^\"]+)\".*",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
@@ -233,5 +251,5 @@
   "timezone": "browser",
   "title": "Ruuvi",
   "uid": "351ce7b6-5d26-495c-8c0a-cd018a7083e6",
-  "version": 1
+  "version": 2
 }
