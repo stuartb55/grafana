@@ -1,0 +1,652 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "unit": "s"
+        }
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"uptime\"\nFROM \"frigate_system\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"uptime\"\nFROM \"frigate_system\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"uptime\"\nFROM \"frigate_system\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "A",
+          "format": "table"
+        }
+      ],
+      "title": "System Uptime",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ]
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"stalls_hour\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"stalls_hour\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"stalls_hour\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "A",
+          "format": "table"
+        }
+      ],
+      "title": "Total Stalls (Selected Range)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          },
+          "unit": "fps"
+        }
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ]
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"skipped_fps\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"skipped_fps\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"skipped_fps\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "A",
+          "format": "table"
+        }
+      ],
+      "title": "Avg Skipped FPS",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "min": 0,
+          "max": 50,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 15
+              },
+              {
+                "color": "red",
+                "value": 30
+              }
+            ]
+          },
+          "unit": "ms"
+        }
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"inference_speed\", \"detector\"\nFROM \"frigate_detector\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"inference_speed\", \"detector\"\nFROM \"frigate_detector\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"inference_speed\", \"detector\"\nFROM \"frigate_detector\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "A",
+          "format": "table"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "detector"
+            ]
+          }
+        }
+      ],
+      "title": "Current Inference Speed",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "lineWidth": 2,
+            "showPoints": "never"
+          },
+          "unit": "fps"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 5
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"camera_fps\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"camera_fps\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"camera_fps\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "A",
+          "format": "table"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "camera"
+            ]
+          }
+        }
+      ],
+      "title": "Capture FPS Stream Quality",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 1,
+            "showPoints": "never"
+          },
+          "unit": "fps"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 5
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"process_fps\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"process_fps\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"process_fps\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "A",
+          "format": "table"
+        },
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"detection_fps\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"detection_fps\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"detection_fps\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "B",
+          "format": "table"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "camera"
+            ]
+          }
+        }
+      ],
+      "title": "Processing vs Detection FPS",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "min": -100,
+          "max": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": -40
+              },
+              {
+                "color": "red",
+                "value": -10
+              }
+            ]
+          },
+          "unit": "dB"
+        }
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 13
+      },
+      "id": 7,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"audio_dbfs\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"audio_dbfs\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"audio_dbfs\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "A",
+          "format": "table"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "camera"
+            ]
+          }
+        }
+      ],
+      "title": "Live Audio Levels (dBFS)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 30,
+            "lineWidth": 1,
+            "showPoints": "never"
+          }
+        }
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 13
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"audio_rms\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"audio_rms\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"audio_rms\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "A",
+          "format": "table"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "camera"
+            ]
+          }
+        }
+      ],
+      "title": "Audio RMS History",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineWidth": 1,
+            "showPoints": "never",
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            }
+          },
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"ffmpeg_cpu\" AS \"FFMPEG\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"ffmpeg_cpu\" AS \"FFMPEG\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"ffmpeg_cpu\" AS \"FFMPEG\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "A",
+          "format": "table"
+        },
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"capture_cpu\" AS \"Capture\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"capture_cpu\" AS \"Capture\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"capture_cpu\" AS \"Capture\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "B",
+          "format": "table"
+        },
+        {
+          "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "query": "SELECT \n  time,\n  \"detect_cpu\" AS \"Detect\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawSql": "SELECT \n  time,\n  \"detect_cpu\" AS \"Detect\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "queryText": "SELECT \n  time,\n  \"detect_cpu\" AS \"Detect\", \"camera\"\nFROM \"frigate_camera\"\nWHERE \n  $__timeFilter(time)\nORDER BY time ASC",
+          "rawQuery": true,
+          "refId": "C",
+          "format": "table"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "camera"
+            ]
+          }
+        }
+      ],
+      "title": "Stacked CPU Usage per Camera Process",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 39,
+  "tags": [
+    "frigate",
+    "nvr"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Frigate NVR Advanced Metrics",
+  "uid": "frigate-advanced-01",
+  "version": 1,
+  "__inputs": [
+    {
+      "name": "DS_INFLUXDB",
+      "label": "InfluxDB v3 Datasource (Frigate)",
+      "description": "Select the InfluxDB v3 (SQL) datasource for Frigate metrics",
+      "type": "datasource",
+      "pluginId": "influxdb"
+    }
+  ]
+}
